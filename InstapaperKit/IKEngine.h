@@ -58,16 +58,16 @@
 
 
 @interface IKEngine : NSObject {
-    id <IKEngineDelegate> _delegate;
+    __weak id <IKEngineDelegate> _delegate;
     NSString *_OAuthToken;
     NSString *_OAuthTokenSecret;
     
     NSMutableDictionary *_connections;
 }
 
-@property (nonatomic, assign) id <IKEngineDelegate> delegate;
-@property (nonatomic, copy) NSString *OAuthToken;
-@property (nonatomic, copy) NSString *OAuthTokenSecret;
+@property (nonatomic, weak) id <IKEngineDelegate> delegate;
+@property (nonatomic, strong) NSString *OAuthToken;
+@property (nonatomic, strong) NSString *OAuthTokenSecret;
 
 + (void)setOAuthConsumerKey:(NSString *)key andConsumerSecret:(NSString *)secret;
 

@@ -31,7 +31,7 @@
 
 + (IKBookmark *)bookmarkWithBookmarkID:(NSInteger)bookmarkID
 {
-    IKBookmark *bookmark = [[[IKBookmark alloc] initWithBookmarkID:bookmarkID] autorelease];
+    IKBookmark *bookmark = [[IKBookmark alloc] initWithBookmarkID:bookmarkID];
     return bookmark;
 }
 
@@ -67,18 +67,5 @@
 
 #pragma mark -
 #pragma mark Memory management
-
-- (void)dealloc
-{
-    [_URL release];
-    [_title release];
-    [_descr release];
-    [_date release];
-    [_privateSource release];
-    [_hashString release];
-    [_progressDate release];
-    
-    [super dealloc];
-}
 
 @end

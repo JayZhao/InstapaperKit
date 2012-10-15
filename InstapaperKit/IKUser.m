@@ -45,13 +45,4 @@
                                                                        self.subscribed];
 }
 
-#pragma mark -
-#pragma mark Memory management
-
-- (void)dealloc
-{
-    [_username release];
-    [super dealloc];
-}
-
 @end

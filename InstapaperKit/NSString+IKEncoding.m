@@ -30,7 +30,7 @@
     CFStringEncoding encoding = CFStringConvertNSStringEncodingToEncoding(stringEncoding);
     CFStringRef legalChars    = (CFStringRef)@"!*'();:@&=+$,/?%#[]";
     CFStringRef encodedString = CFURLCreateStringByAddingPercentEscapes(NULL, (CFStringRef)self, NULL, legalChars, encoding);
-    return [(NSString *)encodedString autorelease];
+    return (NSString *)CFBridgingRelease(encodedString);
 }
 
 @end

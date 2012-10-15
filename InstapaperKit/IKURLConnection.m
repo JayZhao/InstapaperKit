@@ -32,7 +32,7 @@
 {
     if ((self = [super initWithRequest:request delegate:delegate startImmediately:startImmediately])) {
         // Initial values
-        _request  = [request retain];
+        _request  = request;
         _response = nil;
         _data     = [[NSMutableData alloc] init];
         _userInfo = nil;
@@ -54,17 +54,6 @@
 #pragma mark -
 #pragma mark Memory management
 
-- (void)dealloc
-{
-    [_request release];
-    [_response release];
-    [_data release];
-    [_userInfo release];
-    
-    [_context release];
-    
-    [super dealloc];
-}
 
 #pragma mark -
 #pragma mark Private accessors
@@ -77,16 +66,14 @@
 - (void)_setUserInfo:(id)userInfo
 {
     if (_userInfo != userInfo) {
-        [_userInfo release];
-        _userInfo = [userInfo retain];
+        _userInfo = userInfo;
     }
 }
 
 - (void)_setResponse:(NSHTTPURLResponse *)response
 {
     if (_response != response) {
-        [_response release];
-        _response = [response retain];
+        _response = response;
     }
 }
 
@@ -100,8 +87,7 @@
 - (void)_setContext:(id)context
 {
     if (_context != context) {
-        [_context release];
-        _context = [context retain];
+        _context = context;
     }
 }
 

@@ -47,7 +47,7 @@
 
 + (IKFolder *)folderWithFolderID:(NSInteger)folderID
 {
-    IKFolder *folder = [[[IKFolder alloc] initWithFolderID:folderID] autorelease];
+    IKFolder *folder = [[IKFolder alloc] initWithFolderID:folderID];
     return folder;
 }
 
@@ -74,15 +74,6 @@
 {
     return [NSString stringWithFormat:@"<%@: %@ (%d)>", NSStringFromClass([self class]),
                                                         self.title, self.folderID];
-}
-
-#pragma mark -
-#pragma mark Memory management
-
-- (void)dealloc
-{
-    [_title release];
-    [super dealloc];
 }
 
 @end

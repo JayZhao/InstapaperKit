@@ -50,11 +50,8 @@ static NSString *_OAuthConsumerSecret = nil;
 
 + (void)setOAuthConsumerKey:(NSString *)key andConsumerSecret:(NSString *)secret
 {
-    [_OAuthConsumerKey release];
-    _OAuthConsumerKey = [key copy];
-    
-    [_OAuthConsumerSecret release];
-    _OAuthConsumerSecret = [secret copy];
+    _OAuthConsumerKey = key;
+    _OAuthConsumerSecret = secret;
 }
 
 - (id)initWithDelegate:(id <IKEngineDelegate>)delegate
@@ -386,7 +383,6 @@ static NSString *_OAuthConsumerSecret = nil;
         IKURLConnection *connection = [connectionsCopy objectForKey:key];
         [self cancelConnection:connection];
     }
-    [connectionsCopy release];
 }
 
 #pragma mark -
@@ -414,8 +410,8 @@ static NSString *_OAuthConsumerSecret = nil;
 
 - (void)connectionDidFinishLoading:(IKURLConnection *)connection
 {
-    NSString *responseString = [[[NSString alloc] initWithData:connection.data
-                                                     encoding:NSUTF8StringEncoding] autorelease];
+    NSString *responseString = [[NSString alloc] initWithData:connection.data
+                                                     encoding:NSUTF8StringEncoding];
     
     NSError *responseError = [NSError errorWithDomain:NSURLErrorDomain
                                                  code:NSURLErrorBadServerResponse
@@ -722,15 +718,7 @@ static NSString *_OAuthConsumerSecret = nil;
 
 - (void)dealloc
 {
-    _delegate = nil;
     [self cancelAllConnections];
-    
-    [_OAuthToken release];
-    [_OAuthTokenSecret release];
-    
-    [_connections release];
-    
-    [super dealloc];
 }
 
 #pragma mark -
@@ -841,7 +829,6 @@ static NSString *_OAuthConsumerSecret = nil;
     // Add to dictionary
     NSString *identifier = [[NSProcessInfo processInfo] globallyUniqueString];
     [_connections setObject:connection forKey:identifier];
-    [connection release];
     
     // Inform delegate
     if ([self.delegate respondsToSelector:@selector(engine:willStartConnection:)]) {
@@ -867,7 +854,6 @@ static NSString *_OAuthConsumerSecret = nil;
     NSData *HMAC = [[NSData alloc] initWithBytes:cHMAC
                                           length:sizeof(cHMAC)];
     NSString *hash = [HMAC base64EncodedString];
-    [HMAC release];
     
     return hash;
 }

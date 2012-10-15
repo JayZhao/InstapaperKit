@@ -112,7 +112,6 @@
             user.subscribed = [[self _normalizedObjectForKey:@"subscription_is_active" inDictionary:dict] boolValue];
             
             [result addObject:user];
-            [user release];
             
         } else if ([type isEqualToString:@"bookmark"]) {
             // Create bookmark object
@@ -130,7 +129,6 @@
             bookmark.progressDate  = [self _dateForKey:@"progress_timestamp" inDictionary:dict];
             
             [result addObject:bookmark];
-            [bookmark release];
 
         } else if ([type isEqualToString:@"folder"]) {
             // Create folder object
@@ -142,7 +140,6 @@
             folder.position     = [[self _normalizedObjectForKey:@"position" inDictionary:dict] unsignedIntegerValue];
             
             [result addObject:folder];
-            [folder release];
             
         }
     }
