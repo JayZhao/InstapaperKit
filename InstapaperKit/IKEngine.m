@@ -30,7 +30,7 @@
 #import "IKConstants.h"
 #import "IKURLConnection+Private.h"
 
-#import "NSData+Base64.h"
+#import "NSData+ENBase64.h"
 
 
 @interface IKEngine ()
